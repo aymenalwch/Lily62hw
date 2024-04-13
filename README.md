@@ -1,6 +1,9 @@
-# Slily-62
+# Slily 62
 A 6×5+1keys ortholinear split keyboard powered by an RP2040.
 Based on Lily58, Sofle, Corne and Piantor keyboards.
+
+# Features
+The 3D printable case can be founded in the case folder. 
 
 Slily uses the QMK firmware.
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools)
