@@ -152,17 +152,17 @@ bool oled_task_kb(void) {
         oled_render_layer_state();
         oled_render_led_mode();
         // oled_write_ln(read_layer_state(), false);
-        oled_write_ln(read_keylog(), false);
-        oled_write_ln(read_keylogs(), false);
+        // oled_write_ln(read_keylog(), false);
+        // oled_write_ln(read_keylogs(), false);
 
-            // Host Keyboard LED Status
+    // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
     oled_set_cursor(1, 0);
     oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
     // snprintf(temp, sizeof(temp) + 1, "M:%3dH:%3dS:%3dV:%3d", rgb_config.mode, rgb_config.hsv.h, rgb_config.hsv.s, rgb_config.hsv.v);
 
-        // oled_set_cursor(0, 5);
-        // oled_render_logo();
+        oled_set_cursor(0, 5);
+        oled_render_logo();
 
     } else {
         // oled_render_layer_state();
