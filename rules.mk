@@ -1,7 +1,7 @@
 BOARD = GENERIC_RP_RP2040
 # LTO_ENABLE = yes            # Link Time Optimization enabled
-
 SERIAL_DRIVER = vendor
+SPLIT_KEYBOARD = yes
 
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 CONSOLE_ENABLE = no         # Console for debug

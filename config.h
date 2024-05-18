@@ -6,12 +6,18 @@
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP25
+#define USB_VBUS_PIN GP19
+#define TAPPING_TERM 200
 
-#define SERIAL_USART_FULL_DUPLEX
-#define SERIAL_USART_TX_PIN GP0
-#define SERIAL_USART_RX_PIN GP1
-// #define SERIAL_USART_PIN_SWAP
-// #define SELECT_SOFT_SERIAL_SPEED 1
+#define SPLIT_USB_DETECT
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_MODS_ENABLE
+// #define SPLIT_TRANSPORT_MIRROR
+// #define MASTER_LEFT
+// #define SPLIT_HAND_PIN GP18
+// #define SPLIT_HAND_PIN_LOW_IS_LEFT
+#define SOFT_SERIAL_PIN GP9
+
 
 #include_next <mcuconf.h>
 #undef RP_I2C_USE_I2C0
@@ -31,15 +37,11 @@
 #define OLED_DISPLAY_HEIGHT 64
 
 
-#define USB_VBUS_PIN GP19
-
-// #define SPLIT_HAND_PIN GP17
-// #define SPLIT_HAND_PIN_LOW_IS_LEFT
-
-// #define WS2812_BYTE_ORDER WS2812_BYTE_ORDER_GRB
-// #define RGBLIGHT_ANIMATIONS
-// #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.2
-// #define RGBLIGHT_EFFECT_RGB_TEST
+// #define RGBLIGHT_LED_COUNT 8    // Number of LEDs
+#define RGBLIGHT_LED_COUNT 16   // Number of LEDs
+#define RGBLED_SPLIT {8, 8}
+// #define RGBLIGHT_SPLIT         // sync split halfs
+// #define RGBLIGHT_SLEEP      //  the RGB lighting will be switched off when the host goes to sleep
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -56,13 +58,7 @@
 // 15-17 = Snake
 // 18-27 = Static Gradient
 // 28-33 = Waves
-
-#define RGBLIGHT_LED_COUNT 16    // Number of LEDs
-// #define RGBLED_NUM 16
-// #define RGBLIGHT_SPLIT      // sync split halfs
-// #define RGBLIGHT_SLEEP      //  the RGB lighting will be switched off when the host goes to sleep
 #define RGBLIGHT_HUE_STEP 2
 #define RGBLIGHT_SAT_STEP 51
 #define RGBLIGHT_VAL_STEP 51
 
-#define TAPPING_TERM 100

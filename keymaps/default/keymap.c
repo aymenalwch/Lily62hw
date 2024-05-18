@@ -6,7 +6,7 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT_joined_14x5(
+    [0] = LAYOUT_7x5(
   //,-----------------------------------------------------|                                |-----------------------------------------------------|
        KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|                                |--------+--------+--------+--------+--------+--------|
@@ -16,11 +16,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------------|        |--------+--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, LT(3,KC_LBRC),    LT(3,KC_RBRC),    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------------|        |--------+--------+--------+--------+--------+--------+--------|
-               KC_LCTL, KC_LGUI, KC_LALT,  KC_SPC,   MO(1), MO(2),            LT(2,KC_PSCR),  KC_ENT, KC_BSPC,  KC_DEL, KC_RGUI, KC_LCTL
+               KC_LCTL, KC_LGUI, KC_LALT,  KC_SPC,   MO(1),         MO(2),    LT(2,KC_PSCR),  KC_ENT, KC_BSPC,  KC_DEL, KC_RGUI, KC_LCTL
             //|-------------------------------------------|                                |-----------------------------------------------------|
   ),
 
-    [1] = LAYOUT_joined_14x5(
+    [1] = LAYOUT_7x5(
   //,-----------------------------------------------------|                    |-----------------------------------------------------|
        KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
        KC_TAB, XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   ),
 
-    [2] = LAYOUT_joined_14x5(
+    [2] = LAYOUT_7x5(
   //,-----------------------------------------------------|                    |-----------------------------------------------------|
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
        KC_TAB, XXXXXXX,   KC_P7,   KC_P8,   KC_P9, KC_PPLS,                      XXXXXXX, XXXXXXX,   KC_UP, XXXXXXX, KC_PGUP, XXXXXXX,
@@ -40,12 +40,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   ),
 
-    [3] = LAYOUT_joined_14x5(
+    [3] = LAYOUT_7x5(
   //,--------------------------------------------------------|                    |-----------------------------------------------------|
       RGB_TOG,  RGB_M_P, RGB_M_B, RGB_M_R,  RGB_M_G, RGB_M_TW,                     RGB_M_SW, RGB_M_K, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
-      VK_TOGG,  XXXXXXX, RGB_SAD, RGB_VAI,  RGB_SAI,  RGB_SPI,                      XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, XXXXXXX, XXXXXXX,
-      XXXXXXX,  XXXXXXX, RGB_HUD, RGB_VAD,  RGB_HUI,  RGB_SPD,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX,
-      XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, _______,    _______, XXXXXXX, KC_WH_L, XXXXXXX, KC_WH_R, XXXXXXX, XXXXXXX,
+      VK_TOGG,  XXXXXXX, RGB_SAD, RGB_VAI,  RGB_SAI,  XXXXXXX,                      XXXXXXX, RGB_SAI, RGB_VAI, RGB_SAD, XXXXXXX, XXXXXXX,
+      XXXXXXX,  XXXXXXX, RGB_HUD, RGB_VAD,  RGB_HUI,  XXXXXXX,                      XXXXXXX, RGB_HUI, RGB_VAD, RGB_HUD, XXXXXXX, XXXXXXX,
+      XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                 KC_LCTL, KC_LGUI, KC_LALT,   KC_SPC,    MO(1),   MO(2),      MO(2),  KC_ENT, KC_BSPC,  KC_DEL, KC_RGUI, KC_LCTL
   //|--------+--------+--------+--------+----------+---------|                    |--------+--------+--------+--------+--------+--------|
   )
@@ -146,7 +146,7 @@ const char *read_keylogs(void);
 // ---------------------------------------------------------------------------------------------
 bool oled_task_kb(void) {
     if (!oled_task_user()) {
-        return false;
+        oled_render_logo();
     }
     if (is_keyboard_master()) {
         oled_render_layer_state();
@@ -156,17 +156,24 @@ bool oled_task_kb(void) {
         // oled_write_ln(read_keylogs(), false);
 
     // Host Keyboard LED Status
-    led_t led_state = host_keyboard_led_state();
-    oled_set_cursor(1, 0);
-    oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-    // snprintf(temp, sizeof(temp) + 1, "M:%3dH:%3dS:%3dV:%3d", rgb_config.mode, rgb_config.hsv.h, rgb_config.hsv.s, rgb_config.hsv.v);
+        led_t led_state = host_keyboard_led_state();
+        oled_set_cursor(1, 0);
+        oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+        // snprintf(temp, sizeof(temp) + 1, "M:%3dH:%3dS:%3dV:%3d", rgb_config.mode, rgb_config.hsv.h, rgb_config.hsv.s, rgb_config.hsv.v);
 
         oled_set_cursor(0, 5);
         oled_render_logo();
 
     } else {
         // oled_render_layer_state();
-        // oled_set_cursor(1, 5);
+        oled_render_led_mode();
+        led_t led_state = host_keyboard_led_state();
+        oled_set_cursor(1, 0);
+        oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+        oled_set_cursor((oled_max_chars() - 5)/2+1, 0);
+        oled_write_ln(PSTR("SLAVE"), false);
+
+        oled_set_cursor(0, 5);
         oled_render_logo();
     }
     return false;
