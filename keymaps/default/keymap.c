@@ -1,8 +1,5 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
-
-
-
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -122,6 +119,8 @@ static void oled_render_led_mode(void) {
     oled_set_cursor(1, 2);
     oled_write(mode, false);
     oled_write_ln(get_u8_str(speed, ' '), false);
+    oled_write("    HUE  :  ", false);
+    oled_write_ln(get_u8_str(rgblight_get_hue(), ' '), false);
 }
 
 static void oled_render_logo(void) {
@@ -151,31 +150,29 @@ bool oled_task_kb(void) {
     if (is_keyboard_master()) {
         oled_render_layer_state();
         oled_render_led_mode();
-        // oled_write_ln(read_layer_state(), false);
-        // oled_write_ln(read_keylog(), false);
+
+        led_t led_state = host_keyboard_led_state();
+        oled_set_cursor(1, 0);
+        oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+
+        oled_set_cursor(1, 5);
+        oled_write_ln(read_keylog(), false);
         // oled_write_ln(read_keylogs(), false);
-
-    // Host Keyboard LED Status
-        led_t led_state = host_keyboard_led_state();
-        oled_set_cursor(1, 0);
-        oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-        // snprintf(temp, sizeof(temp) + 1, "M:%3dH:%3dS:%3dV:%3d", rgb_config.mode, rgb_config.hsv.h, rgb_config.hsv.s, rgb_config.hsv.v);
-
-        oled_set_cursor(0, 5);
-        oled_render_logo();
-
+        // oled_set_cursor(0, 5);
+        // oled_render_logo();
     } else {
-        // oled_render_layer_state();
+        oled_render_layer_state();
         oled_render_led_mode();
+
         led_t led_state = host_keyboard_led_state();
         oled_set_cursor(1, 0);
         oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-        oled_set_cursor((oled_max_chars() - 5)/2+1, 0);
-        oled_write_ln(PSTR("SLAVE"), false);
 
-        oled_set_cursor(0, 5);
-        oled_render_logo();
+        oled_set_cursor(15, 7);
+        oled_write_ln(PSTR("SLAVE"), false);
     }
+
+    // snprintf(temp, sizeof(temp) + 1, "M:%3dH:%3dS:%3dV:%3d", rgb_config.mode, rgb_config.hsv.h, rgb_config.hsv.s, rgb_config.hsv.v);
     return false;
 }
 
