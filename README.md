@@ -11,3 +11,5 @@ and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) fo
 Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
     make slily/slily62:default
+    
+![firefox_ZLXGu8KsIH](https://github.com/aymenalwch/slily62/assets/87476098/e8983ce8-01ab-4cfd-8be0-48cf4a235be6)
