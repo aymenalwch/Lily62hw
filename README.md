@@ -13,3 +13,5 @@ Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/ne
     make slily/slily62:default
     
 ![firefox_ZLXGu8KsIH](https://github.com/aymenalwch/slily62/assets/87476098/e8983ce8-01ab-4cfd-8be0-48cf4a235be6)
+![20240227_215610](https://github.com/aymenalwch/slily62/assets/87476098/187b8dc0-d119-4bab-b44c-7a0513b41ab1)
+![20240527_180025](https://github.com/aymenalwch/slily62/assets/87476098/cb70f0e8-fe2f-47f7-adc7-2d9cad73b8d2)
