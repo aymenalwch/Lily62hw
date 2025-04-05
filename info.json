@@ -1,13 +1,13 @@
 {
     "manufacturer": "Aymen3dev",
-    "keyboard_name": "Slove62",
-    "maintainer": "AymenAlwch",b
-    "url": "",
+    "keyboard_name": "Slily62",
+    "maintainer": "AymenAlwch",
+    "url": "https://github.com/aymenalwch/slily62",
     "bootloader": "rp2040",
     "processor": "RP2040",
 
     "usb": {
-        "device_version": "1.0.0",
+        "device_version": "1.3.0",
         "pid": "0x0002",
         "vid": "0xBEEB"
     },

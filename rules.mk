@@ -9,12 +9,13 @@ COMMAND_ENABLE = no         # Commands for debug and configuration
 AUDIO_ENABLE = no           # Audio output
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 MOUSEKEY_ENABLE = yes       # Mouse keys
-EXTRAKEY_ENABLE = yes       # Audio control and System control
+EXTRAKEY_ENABLE = yes        # Audio control and System control
 NKRO_ENABLE = yes           # N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 WS2812_DRIVER = vendor
-VELOCIKEY_ENABLE=yes
+VELOCIKEY_ENABLE = yes
+
 
 OLED_ENABLE = yes           # OLED display
 OLED_DRIVER_ENABLE = yes
