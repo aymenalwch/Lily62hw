@@ -8,4 +8,6 @@ const char *read_logo(void) {
       0};
 
   return logo;
+  
+  // oled_write_P(logo, false);
 }

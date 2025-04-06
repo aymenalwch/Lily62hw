@@ -1,8 +1,9 @@
 {
-    "manufacturer": "Aymen3dev",
+    "manufacturer": "Aymen3Dev",
     "keyboard_name": "Slily62",
     "maintainer": "AymenAlwch",
     "url": "https://github.com/aymenalwch/slily62",
+    
     "bootloader": "rp2040",
     "processor": "RP2040",
 
@@ -12,11 +13,8 @@
         "vid": "0xBEEB"
     },
 
-    "ws2812": {
-        "pin": "GP14"
-    },
-
     "diode_direction": "ROW2COL",
+    
     "matrix_pins": {
         "cols": ["GP3", "GP4", "GP7", "GP17", "GP16", "GP10", "GP13"],
         "rows": ["GP2", "GP5", "GP6", "GP11", "GP12"]
