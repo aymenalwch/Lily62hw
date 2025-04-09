@@ -1,17 +1,58 @@
-# Slily 62
-A 6×5+1keys ortholinear split keyboard powered by an RP2040.
-Based on Lily58, Sofle, Corne and Piantor keyboards.
+# Slily62 — A Custom Split Keyboard with Vial and QMK Firmware
+![20241012_174241_e2](https://github.com/user-attachments/assets/0e6ab64e-80ad-4260-9f42-313033695ed7)
 
-# Features
-The 3D printable case can be founded in the case folder. 
+## Overview
 
-Slily uses the QMK firmware.
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools)
-and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information.
-Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+The Slily62 is a fully custom-built ortholinear split mechanical keyboard featuring a 6×5+1 key matrix per side, LED underglow, and powered by RP2040 microcontrollers running QMK firmware with Vial support for real-time key remapping and configuration.
 
-    make slily/slily62:default
-    
-![firefox_ZLXGu8KsIH](https://github.com/aymenalwch/slily62/assets/87476098/e8983ce8-01ab-4cfd-8be0-48cf4a235be6)
-![20240227_215610](https://github.com/aymenalwch/slily62/assets/87476098/187b8dc0-d119-4bab-b44c-7a0513b41ab1)
-![20240527_180025](https://github.com/aymenalwch/slily62/assets/87476098/cb70f0e8-fe2f-47f7-adc7-2d9cad73b8d2)
+Designed for maximum flexibility and ease of use, the keyboard supports dynamic keymaps, multiple layers, and customizable RGB underglow — all configurable through the Vial GUI without the need to reflash firmware.
+
+---
+
+## Features
+
+- 6×5+1 matrix split layout (7 columns per side)
+- Powered by QMK Firmware
+- Vial support for live key remapping and layer editing
+- WS2812B underglow
+- Per-layer RGB effects
+- Independent left & right controllers (RP2040)
+- Designed for USB-C TRRS split connection
+- Multiple programmable layers
+- Custom layout & hand-wiring friendly
+
+> 3D printable case files are available in the `case/` folder.
+
+---
+
+## Build Instructions
+
+Clone the [Vial fork of QMK firmware](https://github.com/vial-kb/vial-qmk):
+
+```bash
+git clone --recurse-submodules https://github.com/vial-kb/vial-qmk.git
+cd vial-qmk
+qmk setup
+qmk compile -kb handwired/slily62 -km vial
+qmk flash -kb handwired/slily62 -km vial
+make handwired/slily62:vial
+```
+
+---
+
+## Resources
+
+- QMK Documentation: [https://docs.qmk.fm/](https://docs.qmk.fm/)
+- Vial Project: [https://get.vial.today/](https://get.vial.today/)
+- Vial App Download: [https://get.vial.today/download/](https://get.vial.today/download/)
+- Vial Web Configurator: [https://vial.rocks/](https://vial.rocks/)
+
+---
+
+## Credits
+
+Designed and developed by Aymen Alouache.
+
+Inspired by open-source keyboard designs Lily58, Sofle, and Corne.
+
+Built with ❤️ using QMK and Vial.
