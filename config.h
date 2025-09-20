@@ -36,9 +36,9 @@
 #    define OLED_FONT_H "./lib/glcdfont.c"
 #    define OLED_DISPLAY_WIDTH 128
 #    define OLED_DISPLAY_HEIGHT 64
-#    define OLED_TIMEOUT 5000
-#    define OLED_FADE_OUT
-#    define OLED_FADE_OUT_INTERVAL 5
+#    define OLED_TIMEOUT 10000
+// #    define OLED_FADE_OUT
+// #    define OLED_FADE_OUT_INTERVAL 5
 #endif // OLED_ENABLE
 
 
@@ -73,4 +73,4 @@
 #define RGBLIGHT_VAL_STEP 51
 // #define RGBLIGHT_DEFAULT_MODE RGB_MODE_RGBTEST
 #define RGBLIGHT_DEFAULT_ON false
-#define RGBLIGHT_TIMEOUT 30000  // 30 seconds
+#define RGBLIGHT_TIMEOUT 10000  // 10 seconds

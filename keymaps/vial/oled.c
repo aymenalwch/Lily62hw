@@ -69,9 +69,9 @@ static void oled_render_led_mode(void) {
     oled_set_cursor(1, 2);
     oled_write(mode, false);
     oled_write_ln(get_u8_str(speed, ' '), false);
-    oled_write("    SAT  :  ", false);
-    oled_write_ln(get_u8_str(rgblight_get_sat(), ' '), false);
-    oled_write("    HUE  :  ", false);
+    oled_write(" SAT: ", false);
+    oled_write(get_u8_str(rgblight_get_sat(), ' '), false);
+    oled_write(" , HUE: ", false);
     oled_write_ln(get_u8_str(rgblight_get_hue(), ' '), false);
 }
 
@@ -91,18 +91,19 @@ bool oled_task_kb(void) {
         oled_render_layer_state();
         oled_render_led_mode();
         
-        // led_t led_state = host_keyboard_led_state();
-        // oled_set_cursor(1, 0);
-        // oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-        // oled_set_cursor(15, 7);
-        // oled_write_ln(PSTR(" MTR "), false);
+        led_t led_state = host_keyboard_led_state();
+        oled_set_cursor(1, 0);
+        oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
 
+        oled_set_cursor(1, 7);
+        oled_write_ln(PSTR("MASTER"), false);
 
-        oled_set_cursor(0, 6);
+        oled_set_cursor(1, 4);
+        oled_write_P(read_logo(), false);
+
+        // oled_set_cursor(0, 6);
         // oled_write_ln(read_keylog(), false);
-        oled_write_ln(read_keylogs(), false);
-        // oled_set_cursor(0, 5);
-        // oled_write_P(read_logo(), false);
+        // oled_write_ln(read_keylogs(), false);
     } else {
         oled_render_layer_state();
         oled_render_led_mode();
@@ -110,10 +111,11 @@ bool oled_task_kb(void) {
         led_t led_state = host_keyboard_led_state();
         oled_set_cursor(1, 0);
         oled_write(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-        oled_set_cursor(15, 7);
 
+        oled_set_cursor(15, 7);
         oled_write_ln(PSTR("SLAVE"), false);
-        oled_set_cursor(0, 4);
+        
+        oled_set_cursor(1, 4);
         oled_write_P(read_logo(), false);
     }
     return false;
